@@ -2,45 +2,9 @@
 
     session_start();
 
-    $sqluser = "user";
-    $sqlpassword = "password";
-
-    /*
-    Replace user and password above with your sql server user and password.
-    if you have not created an user, run sql server in shell as root user and enter:
-    
-    CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
-
-    GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost';
-
-    FLUSH PRIVILEGES;
-    
-    You can replace user and password with your desired username and password.
-    */
-
+    $sqluser = "hello";
+    $sqlpassword = "12345";
     $sqldatabase = "login";
-
-    /*
-    for this page to work you have to create a database named login and a table named list in your mysql server.
-    To do this, enter following in your mysql server:
-
-    CREATE DATABASE login;
-
-    USE login;
-
-    CREATE TABLE list(
-        id int not null auto_increment,
-        user_name varchar(255) not null,
-        first_name varchar(255) not null,
-        last_name varchar(255) not null,
-        email varchar(255) not null,
-        password varchar(255) not null,
-        PRIMARY KEY (id)
-    );
-
-    keep 'login' and 'list' and all field names in lowercase, otherwise, it won't work.
-    */
-
     try {
         $pdo = new PDO("mysql:host=localhost;dbname=".$sqldatabase,$sqluser,$sqlpassword);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -81,7 +45,6 @@
         position:absolute;
         width:350px;
         background:#eee;
-        padding:20px;
         border-radius: 2px;
         box-shadow:0px 0px 10px #aaa;
         box-sizing:border-box;
@@ -93,9 +56,9 @@
         background-color: blue;
         color:white;
         font-size:1em;
-        box-shadow: 0px 0px 3px #777;
-        padding:10px 0px;
-    }
+        box-shadow: 0px 0px 4px #777;
+        padding:10px 10px;
+  
     p {
         text-align: center;
         font-size: 1.75em;
@@ -103,7 +66,7 @@
 </style>
 </head> 
 <body>
-<div>
+<div style="padding: 20px 20px; border-radius:2px;">
 <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
     <p>Logged In</p><br>
     Welcome user <?php echo $_SESSION["fname"].' (@'.$_SESSION["uname"].').';?><br><br>
